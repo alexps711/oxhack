@@ -34,6 +34,11 @@ class UserCol extends React.Component {
 
 }
 
+createClicked(){
+  alert("here")
+
+}
+
   /**
    * Keeps track of the card clicked
    * @param {String} type 
@@ -58,9 +63,11 @@ class UserCol extends React.Component {
     })
     return (
       <div className="user-col">
+        <div className="user-col-scroll">
         {colItems}
+        </div>
         <div className="col-footer">
-          <Button type="button" onClick={this.buttonClicked}>{"Create new " + this.state.title}</Button>
+          <Button type="button" onClick={this.createClicked}>{"Create new " + this.state.title}</Button>
         </div>
       </div>
     );
