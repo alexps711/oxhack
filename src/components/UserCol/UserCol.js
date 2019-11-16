@@ -2,6 +2,7 @@ import React from "react";
 import './UserCol.css';
 import ColItem from '../ColItem'
 import Button from '@material-ui/core/Button';
+import firebase from "../../firebase";
 
 class UserCol extends React.Component {
   constructor(props) {
@@ -9,15 +10,7 @@ class UserCol extends React.Component {
     this.state = {
       title: props.title,
       type: props.type,
-      rows: {
-        0: "Client 0",
-        1: "Client 1",
-        2: "Client 2",
-        3: "Client 3",
-        4: "Client 4",
-        5: "Client 5",
-        7: "Client 6",
-      },
+      rows: [],
       selected: {
         type: null,
         id: null,
@@ -25,6 +18,14 @@ class UserCol extends React.Component {
     };
     this.setClicked = this.setClicked.bind(this);
   }
+
+  componentDidMount() {
+    var currentThis = this;
+    firebase.database().ref(this.state.path).once('value').then(function(snapshot) {
+      currentThis.setState({...currentThis.state, rows:Object.keys(snapshot.val())})
+    });
+
+}
 
   /**
    * Keeps track of the card clicked
