@@ -1,6 +1,9 @@
 .container{
-    width: 100%;
+    display: flex;
+    text-align: center;
+    min-height: 100vh;
   }
+
 .header-image img {
     border-radius: 50%;
     height: 140px;

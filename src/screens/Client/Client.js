@@ -1,14 +1,11 @@
 import React from 'react'
 
 class Client extends React.Component{
-    constructor(props){
-        super(props)
-    }
 
     render(){
         return(
-            <div>
-            <h1>Client</h1>
+            <div className="container">
+            <h1>Hello</h1>
             </div>
 
         )
