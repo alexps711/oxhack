@@ -2,14 +2,9 @@
     text-align: center;
     position: relative;
     background-color: rgb(218, 218, 218) ;
-  }
+}
 
- 
-  
-  
-    
-  .col-item{
-      
+.col-item{
     border-top: 2px solid rgb(185, 185, 185);
     border-bottom: 2px solid rgb(185, 185, 185);
     width: 100%;
@@ -17,7 +12,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: rgb(236, 236, 236);
-  }
+}
 
   
   

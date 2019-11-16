@@ -11,13 +11,17 @@ class ColItem extends React.Component {
         type: props.type,
         handleChange : props.handleChange
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
-
+  handleClick() {
+    this.props.handleClick(this.state.type, this.state.id);
+  }
+  
   render() {
     return (
         <div>
-        <Button type="button" onClick={()=>this.state.handleChange(this.state.type ,this.state.id)} name={this.state.id} style={{width:"100%", fontSize:"20px", paddingBottom: "10px", paddingTop: "10px" }}>{this.state.text}</Button>
+          <Button type="button" onClick={this.handleClick}>{this.state.text}</Button>
         </div>
     )
 
