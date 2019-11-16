@@ -8,32 +8,31 @@ class UserCol extends React.Component {
     super(props);
     this.state = {
       title: props.title,
-      hidden: props.hidden,
-      rows:{
-          0:"Client 0",
-          1:"Client 1",
-          2:"Client 2",
-          3:"Client 3",
-          4:"Client 4",
-          5:"Client 5",
-          7:"Client 6",
+      rows: {
+        0: "Client 0",
+        1: "Client 1",
+        2: "Client 2",
+        3: "Client 3",
+        4: "Client 4",
+        5: "Client 5",
+        6: "Client 6",
+        7: "Client 7",
       },
       selected: null
     };
   }
 
   render() {
-      let currentThis = this
-      var colItems = Object.keys(this.state.rows).map(function(id){
-          return <ColItem text={currentThis.state.rows[id]}/>
-      })
-      console.log(colItems)
+    let currentThis = this;
+    var colItems = Object.keys(this.state.rows).map((id) => {
+      return <ColItem text={currentThis.state.rows[id]} />
+    })
     return (
       <div className="user-col">
-        <h2>{this.state.title.toUpperCase()}</h2>
+        <h2>{this.state.title}</h2>
         {colItems}
         <div className="col-footer">
-        <Button type="button">{"Create new "+this.state.title}</Button>
+          <Button type="button">{"Create new " + this.state.title}</Button>
         </div>
       </div>
     );
