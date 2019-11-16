@@ -45,6 +45,7 @@ class UserCol extends React.Component {
     this.state.showNewComponent(this.state.id);
   }
 
+
   /**
    * Keeps track of the card clicked
    * @param {String} type
@@ -76,11 +77,11 @@ class UserCol extends React.Component {
     });
     return (
       <div className="user-col">
-        <div className="user-col-scroll">{colItems}</div>
+        <div className="user-col-scroll">
+        {colItems}
+        </div>
         <div className="col-footer">
-          <Button type="button" onClick={this.createNew}>
-            {"Create new " + this.state.title}
-          </Button>
+          <Button type="button" onClick={this.createNew}>{"Create new " + this.state.title}</Button>
         </div>
       </div>
     );
