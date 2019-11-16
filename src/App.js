@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Client from './screens/Client'
+import Client from './screens/Client/Client'
 import User from './screens/User/User'
 
 import './App.css';
