@@ -1,16 +1,13 @@
 import React from 'react'
+import '../firebase';
 
-class User extends React.Component{
-    constructor(props){
-        super(props)
-    }
+class User extends React.Component {
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-            <h1>User</h1>
+                <h1>User</h1>
             </div>
-
         )
     }
 }
