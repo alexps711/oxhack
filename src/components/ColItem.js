@@ -9,7 +9,7 @@ class ColItem extends React.Component {
         text: props.text,
         id: props.id,
         type: props.type,
-        handleChange : props.handleChange
+        handleChange : props.handleChange,
     }
     this.handleClick = this.handleClick.bind(this);
   }
