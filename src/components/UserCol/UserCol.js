@@ -40,7 +40,7 @@ class UserCol extends React.Component {
       }
     });
     //Tell User.js to reveal the column.
-    this.props.show(this.state.type);
+    this.props.show(this.state.type, this.state.selected.id);
   }
 
   render() {

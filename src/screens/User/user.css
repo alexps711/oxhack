@@ -13,3 +13,7 @@
 .Column h1 {
     text-align: center;
 }
+
+.NavMenu {
+    flex-grow: 1;
+}

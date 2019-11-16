@@ -1,11 +1,24 @@
 .container{
     display: flex;
+    flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
-  }
-
-.header-image img {
-    border-radius: 50%;
-    height: 140px;
-    margin: auto;
 }
+
+.rightNav{
+  margin-left: auto;
+}
+
+.header {
+
+}
+
+.image {
+    border-radius: 50%;
+    height: 20vh;
+    object-fit: contain;
+    margin-bottom: 10%;
+}
+
