@@ -1,0 +1,8 @@
+.container{
+  width: 100%;
+}
+.header-image img {
+    border-radius: 50%;
+    height: 140px;
+    margin: auto;
+  }

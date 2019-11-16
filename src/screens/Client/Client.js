@@ -1,5 +1,6 @@
 import React from 'react'
-
+import ClientHeader from './../../components/ClientHeader'
+import './Client.css'
 class Client extends React.Component{
     constructor(props){
         super(props)
@@ -7,8 +8,8 @@ class Client extends React.Component{
 
     render(){
         return(
-            <div>
-            <h1>Client</h1>
+            <div className="container">
+            <ClientHeader/>
             </div>
 
         )
