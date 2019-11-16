@@ -1,0 +1,26 @@
+.logInScreen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.formContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.logInInput {
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 300;
+}
+
+.logInButt {
+    margin: 8px;
+}
