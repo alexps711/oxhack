@@ -9,8 +9,11 @@ class UserCol extends React.Component {
     super(props);
     this.state = {
       title: props.title,
+      id:props.id,
       type: props.type,
+      path:props.path,
       rows: [],
+      onSelected : props.onSelected,
       selected: {
         type: null,
         id: null,
@@ -19,10 +22,14 @@ class UserCol extends React.Component {
     this.setClicked = this.setClicked.bind(this);
   }
 
+
   componentDidMount() {
     var currentThis = this;
+    console.log("Getting data from "+this.state.path)
     firebase.database().ref(this.state.path).once('value').then(function(snapshot) {
+      if(snapshot.val()!=null){
       currentThis.setState({...currentThis.state, rows:Object.keys(snapshot.val())})
+      }
     });
 
 }
@@ -39,6 +46,7 @@ class UserCol extends React.Component {
         id: id,
       }
     });
+    this.state.onSelected(type, id)
     //Tell User.js to reveal the column.
     this.props.show(this.state.type);
   }
@@ -46,7 +54,7 @@ class UserCol extends React.Component {
   render() {
     let currentThis = this;
     var colItems = Object.keys(this.state.rows).map(function (id) {
-      return <ColItem text={currentThis.state.rows[id]} id={currentThis.state.rows[id]} type={currentThis.state.type} handleClick={currentThis.setClicked} />
+      return <ColItem text={currentThis.state.rows[id]} id={currentThis.state.rows[id]} type={currentThis.state.id} handleClick={currentThis.setClicked} />
     })
     return (
       <div className="user-col">
