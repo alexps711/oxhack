@@ -1,0 +1,15 @@
+.Main {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    justify-content: center;
+}
+.Column {
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-bottom: 10%;
+}
+
+.Column h1 {
+    text-align: center;
+}

@@ -51,7 +51,7 @@ class UserCol extends React.Component {
       console.log(colItems)
     return (
       <div className="user-col ">
-        <h2>{this.state.title.toUpperCase()}</h2>
+        {/* <h2>{this.state.title}</h2> */}
         {colItems}
         <div className="col-footer">
         <Button type="button" onClick={this.buttonClicked}>{"Create new "+this.state.title}</Button>
