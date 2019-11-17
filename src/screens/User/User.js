@@ -11,7 +11,8 @@ import "./user.css";
 import NewCardComponent from "../../components/NewCardComponent";
 import NewSectionComponent from "../../components/NewSectionComponent";
 import NewClientComponent from "../../components/NewClientComponent";
-
+import Button from '@material-ui/core/Button';
+import Link from 'react-router-dom/Link';
 
 export default class User extends React.Component {
     constructor(props) {
@@ -51,12 +52,15 @@ export default class User extends React.Component {
         const { showingSections, showingCards, clientid, userid, sectionid, currentNewComponent } = this.state;
         return (
             <>
-                <AppBar position="static">
+                <AppBar position="static" className="navMenu">
                     <Toolbar>
                         <IconButton edge="start" color="inherit" aria-label="menu">
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6">User</Typography>
+                        <section className="rightNav">
+                            <Button component={Link} color="inherit" to={(userid === null) ? `/client/${clientid}` : '/error'}>Preview</Button>
+                        </section>
                     </Toolbar>
                 </AppBar>
                 <Grid container className="Main">
