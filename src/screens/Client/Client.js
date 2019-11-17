@@ -6,15 +6,18 @@ import firebase from '../../firebase';
 
 export default function Client() {
     let {userid, clientid} = useParams();
-
-    const getSections = () => {
+    //let dbSections = [];
+    const getSections = async () => {
         let ref = firebase.database().ref(`users/${userid}/clients/${clientid}/sections`);
-        let dbSections = ["hello"];
-        ref.on('value', (snapshot) => {
+        let dbSections = [];
+        await ref.once('value', (snapshot) => {
             snapshot.forEach(childSnapshot => {
-                dbSections = [...dbSections, childSnapshot.val()];
+                const tmp = childSnapshot.val();
+
+                dbSections.push(tmp);
             });
         });
+        console.log(dbSections);
         return dbSections;
     }
     const [sections, setSections] = useState(getSections());
