@@ -52,6 +52,8 @@ class NewCardComponent extends React.Component {
             onChange={this.handleChange}
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           <Grid item className="Column">
@@ -64,6 +66,8 @@ class NewCardComponent extends React.Component {
             onChange={this.handleChange}
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           <Grid item className="Column">
@@ -76,6 +80,8 @@ class NewCardComponent extends React.Component {
             onChange={this.handleChange}
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           <Grid item className="Column">
@@ -88,6 +94,8 @@ class NewCardComponent extends React.Component {
             margin="normal"
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           </Grid>

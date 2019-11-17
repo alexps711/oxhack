@@ -22,14 +22,26 @@ class UserCol extends React.Component {
     };
     this.setClicked = this.setClicked.bind(this);
     this.createNew = this.createNew.bind(this)
+    this.updateView = this.updateView.bind(this)
   }
 
   componentDidMount() {
+    this.updateView()
+  }
+    
+  componentDidUpdate(prev){
+    if(prev.path!=this.props.path){
+      this.updateView()
+    }
+
+  }
+
+  updateView(){
     var currentThis = this;
-    console.log("Getting data from " + this.state.path);
+    console.log("Getting data from " + this.props.path);
     firebase
       .database()
-      .ref(this.state.path)
+      .ref(this.props.path)
       .once("value")
       .then(function(snapshot) {
         console.log(snapshot.val())
@@ -37,10 +49,22 @@ class UserCol extends React.Component {
           currentThis.setState({
             ...currentThis.state,
             rows: snapshot.val()
+          }, function(){
+            currentThis.render()
           });
+        }
+        else{
+          currentThis.setState({
+            ...currentThis.state,
+            rows: {}
+          }, function(){
+            currentThis.render()
+          });
+
         }
       });
   }
+  
 
   createNew() {
     this.state.showNewComponent(this.state.id, Object.keys(this.state.rows).length+1);

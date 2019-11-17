@@ -50,6 +50,7 @@ class NewClientComponent extends React.Component {
                 onChange={this.handleChange}
                 multiline
                 variant="outlined"
+                style = {{width: 500}}
               />
             </Grid>
             <Grid item className="Column">
@@ -61,6 +62,7 @@ class NewClientComponent extends React.Component {
                 onChange={this.handleChange}
                 multiline
                 variant="outlined"
+                style = {{width: 500}}
               />
             </Grid>
             <Grid item className="Column">
@@ -72,6 +74,7 @@ class NewClientComponent extends React.Component {
                 onChange={this.handleChange}
                 multiline
                 variant="outlined"
+                style = {{width: 500}}
               />
             </Grid>
           </Grid>

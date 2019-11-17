@@ -46,6 +46,8 @@ class NewSectionComponent extends React.Component {
             onChange={this.handleChange}
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           <Grid item className="Column">
@@ -58,6 +60,8 @@ class NewSectionComponent extends React.Component {
             onChange={this.handleChange}
             multiline
             variant="outlined"
+            style = {{width: 500}}
+
           />
           </Grid>
           <Grid item className="Column">

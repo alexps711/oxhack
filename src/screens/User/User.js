@@ -33,7 +33,6 @@ export default class User extends React.Component {
           count:null
       },
       anchorEl: null,
-      setAnchorEl: null,
     };
     this.show = this.show.bind(this);
     this.onSelected = this.onSelected.bind(this);
@@ -41,7 +40,8 @@ export default class User extends React.Component {
   }
 
   onSelected(type, id) {
-    this.setState({ ...this.state, [type]: id });
+    this.setState({ ...this.state, [type]: id })
+       
   }
 
     showNewComponent(type, count) {
