@@ -1,13 +1,11 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 
-//import InputField from './InputField'
+import firebase from '../firebase';
 
 import '../LogIn.css'
 
@@ -19,21 +17,43 @@ class LogIn extends React.Component{
             password: ''
         }
     }
-
+    
     handleChange = (event) => {
         const eventid = event.target.name;
         const value = event.target.value;
         this.setState({ [eventid]:value });
     }
+    
+    handleSubmit = (event) => {
+        var currentThis = this
+        event.preventDefault();
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password).then(function(user){
+            currentThis.props.onSubmit(user)
 
-    handleSubmit = () => {
-        // your submit logic
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage)            
+        });
+        
+        // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        // .then(function() {
+        //     var currentThis = this
+        //     return 
+        //             console.log(firebase.auth().currentUser)
+        // })
     }
+
+    // handleGoogleLogIn
 
     render(){
         const { email } = this.state;
         const { password } = this.state;
         return (
+           
             <div className="logInScreen">
                 <div className="formContainer">
                     <ValidatorForm
@@ -42,6 +62,9 @@ class LogIn extends React.Component{
                         onSubmit={this.handleSubmit}
                         onError={errors => console.log(errors)}
                     >
+                         <Typography variant="h6">
+                            Log In
+                        </Typography>
                         <div>
                             <TextValidator
                                 id="user-email"
@@ -75,9 +98,17 @@ class LogIn extends React.Component{
                         </div>
 
                         <div>
-                        <Button type="submit" className="logInButt">
+                        <Button type="submit" className="logInButt" >
                             Log In
                         </Button>
+
+                        {/* <button class="googleBtn" type="button">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                                alt="logo"
+                            />
+                            Login With Google
+                        </button> */}
 
                         <Button className="logInButt">
                             Sign up
