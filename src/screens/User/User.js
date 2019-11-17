@@ -12,6 +12,12 @@ import Menu from '@material-ui/core/Menu';
 
 import './user.css';
 
+import NewCardComponent from "../../components/NewCardComponent";
+import NewSectionComponent from "../../components/NewSectionComponent";
+import NewClientComponent from "../../components/NewClientComponent";
+import Button from '@material-ui/core/Button';
+import Link from 'react-router-dom/Link';
+
 
 export default class User extends React.Component {
     constructor(props) {
@@ -24,15 +30,26 @@ export default class User extends React.Component {
             sectionid:null,
             anchorEl: null,
             setAnchorEl: null,
+            currentNewComponent : null,
         }
         this.show = this.show.bind(this);
         this.onSelected = this.onSelected.bind(this)
+            this.showNewComponent = this.showNewComponent.bind(this)
+
     }
 
     
 
-    onSelected(type, id){
-        this.setState({...this.state, [type]:id})
+
+
+  onSelected(type, id) {
+    this.setState({ ...this.state, [type]: id });
+  }
+
+
+    showNewComponent(type) {
+        console.log(type)
+        this.setState({ ...this.state, currentNewComponent: type })
     }
 
     signOut(){
@@ -46,10 +63,11 @@ export default class User extends React.Component {
      * Reveal the column.
      */
     show(type) {
-        if(type === "sections" ){
-            this.setState({ showingSections: true })
+        if (type === "sections") {
+            this.setState({ showingSections: true });
+        } else if (type === "cards") {
+            this.setState({ showingCards: true });
         }
-        else if(type === "cards"){this.setState({ showingCards: true }) };
     }
 
     handleMenu = (event) => {
@@ -61,11 +79,11 @@ export default class User extends React.Component {
       };
 
     render() {
-        const { showingSections, showingCards } = this.state;
+        const { showingSections, showingCards, clientid, userid, sectionid, currentNewComponent } = this.state;
         const open = this.state.anchorEl;
         return (
             <>
-                <AppBar position="static">
+                <AppBar position="static" className="navMenu">
                     <Toolbar>
                         <div>
                             <IconButton 
@@ -99,28 +117,103 @@ export default class User extends React.Component {
                         <Typography variant="h6">
                             User
                         </Typography>
+                        <section className="rightNav">
+                            <Button component={Link} color="inherit" to={(userid === null) ? `/client/${clientid}` : '/error'}>Preview</Button>
+                        </section>
                     </Toolbar>
                 </AppBar>
                 <Grid container className="Main">
                     <Grid item className="Column">
                         <h1>Clients</h1>
-                        <UserCol title="Clients" id="clientid" onSelected = {this.onSelected} type="sections" show={this.show} path={"/users/" + this.state.userid + "/clients"} />
+                        <UserCol
+                            title="Clients"
+                            id="clientid"
+                            onSelected={this.onSelected}
+                            type="sections"
+                            show={this.show}
+                            showNewComponent={this.showNewComponent}
+                            path={"/users/" + userid + "/clients"}
+                        />
                     </Grid>
-                    {showingSections &&
+                    {showingSections && (
                         <Grid item className="Column">
                             <h1>Sections</h1>
-                            <UserCol title="Sections" id="sectionid" onSelected = {this.onSelected} type="cards" show={this.show} path={"/users/" + this.state.userid + "/clients/" + this.state.clientid + "/sections"} />
+                            <UserCol
+                                title="Sections"
+                                id="sectionid"
+                                onSelected={this.onSelected}
+                                type="cards"
+                                showNewComponent={this.showNewComponent}
+                                show={this.show}
+                                path={
+                                    "/users/" +
+                                    userid +
+                                    "/clients/" +
+                                    clientid +
+                                    "/sections"
+                                }
+                            />
                         </Grid>
-                    }
-                    {showingCards &&
+                    )}
+                    {showingCards && (
                         <Grid item className="Column">
                             <h1>Cards</h1>
-                            <UserCol title="Cards" id="cardsid" onSelected = {this.onSelected} path={"/users/" + this.state.userid + "/clients/" + this.state.clientid + "/sections/" + this.state.sectionid + "/cards"} />
+                            <UserCol
+                                title="Cards"
+                                id="cardsid"
+                                onSelected={this.onSelected}
+                                showNewComponent={this.showNewComponent}
+                                path={
+                                    "/users/" +
+                                    userid +
+                                    "/clients/" +
+                                    clientid +
+                                    "/sections/" +
+                                    sectionid +
+                                    "/cards"
+                                }
+                            />
                         </Grid>
-                    }
+                    )}
                 </Grid>
+                {currentNewComponent === "cardsid" && (
+                    <NewCardComponent
+                        path={
+                            "/users/" +
+                            userid +
+                            "/clients/" +
+                            clientid +
+                            "/sections/" +
+                            sectionid +
+                            "/cards"
+                        }
+                    />
+                )
+                }
+
+                {currentNewComponent === "sectionid" && (
+                    <NewSectionComponent
+                        path={
+                            "/users/" +
+                            userid +
+                            "/clients/" +
+                            clientid +
+                            "/sections"
+                        }
+                    />
+                )
+                }
+
+                {currentNewComponent === "clientid" && (
+                    <NewClientComponent
+                        path={
+                            "/users/" +
+                            userid +
+                            "/clients/"
+                        }
+                    />
+                )}
             </>
-        )
+        );
     }
 }
-

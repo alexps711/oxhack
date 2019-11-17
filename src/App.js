@@ -6,6 +6,9 @@ import Client from './screens/Client/Client'
 import User from './screens/User/User'
 import LogIn from './components/LogIn';
 
+import Error from './components/Error/Error';
+
+
 import './App.css';
 
 
@@ -54,6 +57,7 @@ class App extends React.Component {
     )
 
   }
+
 
 }
 
