@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from "./firebase";
-import './firebase';
+import './components/Firebase/firebase';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Client from './screens/Client/Client'
 import User from './screens/User/User'
