@@ -24,7 +24,6 @@ class NewClientComponent extends React.Component {
   }
   saveCard() {
     var currentThis = this;
-    alert(currentThis.props.path);
     firebase
       .database()
       .ref(currentThis.props.path + "/" + currentThis.state.newId)
@@ -46,7 +45,7 @@ class NewClientComponent extends React.Component {
               <TextField
                 id="outlined-basic"
                 label="Id"
-                name="newid"
+                name="newId"
                 margin="normal"
                 onChange={this.handleChange}
                 multiline

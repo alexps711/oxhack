@@ -13,7 +13,7 @@ class NewCardComponent extends React.Component {
         description: null,
         link: null,
         image: null,
-        newid: null,
+        newId: null,
         path: props.path,
 
     }
@@ -27,11 +27,11 @@ class NewCardComponent extends React.Component {
   }
   saveCard(){
       var currentThis = this
-    firebase.database().ref(currentThis.props.path+"/"+currentThis.state.newid).set({
+    firebase.database().ref(currentThis.props.path+"/"+currentThis.state.newId).set({
         img: currentThis.state.image,
         link: currentThis.state.link,
         title : currentThis.state.title,
-        id:currentThis.state.newid,
+        id:currentThis.state.newId,
       });
 
   }
@@ -46,7 +46,7 @@ class NewCardComponent extends React.Component {
           <TextField
             id="outlined-basic"
             label="Id"
-            name="newid"
+            name="newId"
             margin="normal"
             onChange={this.handleChange}
             multiline

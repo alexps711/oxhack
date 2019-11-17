@@ -11,7 +11,7 @@ class NewSectionComponent extends React.Component {
     this.state = {
         title:null,
         description: null,
-        newid:null,
+        newId:null,
         path: props.path
     }
     this.handleChange = this.handleChange.bind(this)
@@ -24,11 +24,10 @@ class NewSectionComponent extends React.Component {
   }
   saveCard(){
       var currentThis = this
-      alert(currentThis.props.path)
-    firebase.database().ref(currentThis.props.path+"/"+currentThis.state.newid).set({
+    firebase.database().ref(currentThis.props.path+"/"+currentThis.state.newId).set({
         description: currentThis.state.description,
         title : currentThis.state.title,
-        id:currentThis.state.newid
+        id:currentThis.state.newId
       });
 
   }
@@ -43,7 +42,7 @@ class NewSectionComponent extends React.Component {
           <TextField
             id="outlined-basic"
             label="Id"
-            name="newid"
+            name="newId"
             margin="normal"
             onChange={this.handleChange}
             multiline
