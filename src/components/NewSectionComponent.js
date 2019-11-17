@@ -16,7 +16,9 @@ class NewSectionComponent extends React.Component {
         title:null,
         description: null,
         newId:null,
-        path: props.path
+        path: props.path,
+        reRender:props.reRender,
+        reRenderId:props.reRenderId
     }
     this.handleChange = this.handleChange.bind(this)
     this.saveCard = this.saveCard.bind(this)
@@ -31,6 +33,8 @@ class NewSectionComponent extends React.Component {
     firebase.database().ref(currentThis.props.path+"/"+currentThis.props.count).set({
         description: currentThis.state.description,
         title : currentThis.state.title,
+      }).then(()=>{
+        currentThis.state.reRender(this.state.reRenderId)
       });
 
   }

@@ -30,7 +30,7 @@ class UserCol extends React.Component {
   }
     
   componentDidUpdate(prev){
-    if(prev.path!=this.props.path){
+    if((prev.path!=this.props.path) || prev.updateTime != this.props.updateTime){
       this.updateView()
     }
 

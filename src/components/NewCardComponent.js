@@ -19,6 +19,8 @@ class NewCardComponent extends React.Component {
         image: null,
         newId: null,
         path: props.path,
+        reRender:props.reRender,
+        reRenderId:props.reRenderId
 
     }
     this.handleChange = this.handleChange.bind(this)
@@ -35,6 +37,8 @@ class NewCardComponent extends React.Component {
         img: currentThis.state.image,
         link: currentThis.state.link,
         title : currentThis.state.title,
+      }).then(()=>{
+        currentThis.state.reRender(this.state.reRenderId)
       });
 
   }

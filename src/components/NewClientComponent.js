@@ -17,7 +17,9 @@ class NewClientComponent extends React.Component {
       description: null,
       img: null,
       path: props.path,
-      newId: null
+      newId: null,
+      reRender:props.reRender,
+      reRenderId:props.reRenderId
     };
     this.handleChange = this.handleChange.bind(this);
     this.saveCard = this.saveCard.bind(this);
@@ -36,6 +38,8 @@ class NewClientComponent extends React.Component {
         description: currentThis.state.description,
         title: currentThis.state.title,
         img: currentThis.state.img,
+      }).then(()=>{
+        currentThis.state.reRender(this.state.reRenderId)
       });
   }
 

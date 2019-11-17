@@ -28,6 +28,10 @@ export default class User extends React.Component {
       userid: props.uid,
       clientid: null,
       sectionid: null,
+      clientid: null,
+      sectionUpadateTime: 0,
+      clientUpadateTime: 0,
+      cardUpadateTime: 0,
       currentNewComponent : {
           type:null,
           count:null
@@ -37,6 +41,7 @@ export default class User extends React.Component {
     this.show = this.show.bind(this);
     this.onSelected = this.onSelected.bind(this);
     this.showNewComponent = this.showNewComponent.bind(this)
+    this.reRender = this.reRender.bind(this)
   }
 
   onSelected(type, id) {
@@ -54,6 +59,14 @@ export default class User extends React.Component {
           }, function(error) {
             console.error('Sign Out Error', error);
           });
+    }
+
+    reRender(id){
+        var seconds = new Date() / 1000;
+        this.setState({[id]:seconds, currentNewComponent : {
+            type:null,
+            count:null
+        }})
     }
     /**
      * Reveal the column.
@@ -75,6 +88,7 @@ export default class User extends React.Component {
       };
 
     render() {
+        const reRender = this.reRender
         const { showingSections, showingCards, clientid, userid, sectionid, currentNewComponent } = this.state;
         const open = this.state.anchorEl;
         return (
@@ -87,8 +101,7 @@ export default class User extends React.Component {
                                 color="inherit" 
                                 aria-label="menu" 
                                 aria-controls="menu-dropdown"
-                                onClick={this.handleMenu}
-                            >
+                                onClick={this.handleMenu}                            >
                                 <MenuIcon />
                             </IconButton>
                             <Menu
@@ -126,6 +139,7 @@ export default class User extends React.Component {
                             id="clientid"
                             onSelected={this.onSelected}
                             type="sections"
+                            updateTime={this.state.clientUpadateTime}
                             show={this.show}
                             showNewComponent={this.showNewComponent}
                             path={"/users/" + userid + "/clients"}
@@ -139,6 +153,7 @@ export default class User extends React.Component {
                                 id="sectionid"
                                 onSelected={this.onSelected}
                                 type="cards"
+                                updateTime={this.state.sectionUpadateTime}
                                 showNewComponent={this.showNewComponent}
                                 show={this.show}
                                 path={
@@ -158,6 +173,7 @@ export default class User extends React.Component {
                                 title="Cards"
                                 id="cardsid"
                                 onSelected={this.onSelected}
+                                updateTime={this.state.cardUpadateTime}
                                 showNewComponent={this.showNewComponent}
                                 path={
                                     "/users/" +
@@ -183,6 +199,8 @@ export default class User extends React.Component {
                             sectionid +
                             "/cards"
                         }
+                        reRenderId="cardUpadateTime"
+                        reRender={reRender}
                         count = {currentNewComponent["count"] }
 
                     />
@@ -198,6 +216,8 @@ export default class User extends React.Component {
                             clientid +
                             "/sections"
                         }
+                        reRender={reRender}
+                        reRenderId="sectionUpadateTime"
                         count = {currentNewComponent["count"] }
 
                     />
@@ -211,7 +231,8 @@ export default class User extends React.Component {
                             userid +
                             "/clients/"
                         }
-
+                        reRender={reRender}
+                        reRenderId="clientUpadateTime"
                         count = {currentNewComponent["count"] }
                     />
                 )}
