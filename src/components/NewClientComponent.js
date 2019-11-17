@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import firebase from "../firebase";
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import SaveIcon from '@material-ui/icons/Save';
 
 import './newField.css'
 
@@ -83,7 +84,7 @@ class NewClientComponent extends React.Component {
               />
               <TextField
                 id="clienLogo"
-                label="Logo"
+                label="Logo link"
                 name="clientLogo"
                 value={img}
                 margin="normal"
@@ -108,7 +109,7 @@ class NewClientComponent extends React.Component {
             </div>
 
             <div>
-              <Button type="submit" className="newFieldButt" >
+              <Button type="submit" className="newFieldButt" startIcon={<SaveIcon />}>
                 Save
             </Button>
             </div>
