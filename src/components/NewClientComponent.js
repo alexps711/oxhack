@@ -26,12 +26,11 @@ class NewClientComponent extends React.Component {
     var currentThis = this;
     firebase
       .database()
-      .ref(currentThis.props.path + "/" + currentThis.state.newId)
+      .ref(currentThis.props.path + "/" + currentThis.props.count)
       .set({
         description: currentThis.state.description,
         title: currentThis.state.title,
         img: currentThis.state.img,
-        id: currentThis.state.newId
       });
   }
 
@@ -41,17 +40,6 @@ class NewClientComponent extends React.Component {
         <div className="new-element-inside-container">
           <h1>New Client</h1>
           <Grid container className="main-TextField-grid">
-            <Grid item className="Column">
-              <TextField
-                id="outlined-basic"
-                label="Id"
-                name="newId"
-                margin="normal"
-                onChange={this.handleChange}
-                multiline
-                variant="outlined"
-              />
-            </Grid>
 
             <Grid item className="Column">
               <TextField
