@@ -63,7 +63,10 @@ export default class User extends React.Component {
 
     reRender(id){
         var seconds = new Date() / 1000;
-        this.setState({[id]:seconds})
+        this.setState({[id]:seconds, currentNewComponent : {
+            type:null,
+            count:null
+        }})
     }
     /**
      * Reveal the column.
