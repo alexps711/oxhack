@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
+<<<<<<< HEAD
     "firebase": "^7.4.0",
     "material-ui": "^0.20.2",
     "react": "^16.12.0",
@@ -12,6 +13,13 @@
     "react-material-ui-form-validator": "^2.0.9",
     "react-native-dotenv": "^0.2.0",
     "react-router": "^5.1.2",
+=======
+    "ajax": "0.0.4",
+    "firebase": "^7.4.0",
+    "jquery": "^3.4.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+>>>>>>> did tom fuck up?
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "typescript": "^3.7.2"

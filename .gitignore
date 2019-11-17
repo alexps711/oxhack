@@ -64,3 +64,5 @@ typings/
 src/.DS_Store
 package-lock.json
 package.json
+
+.vscode
