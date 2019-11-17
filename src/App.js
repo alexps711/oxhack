@@ -15,7 +15,7 @@ function App() {
         <Route path="/user">
           <User />
         </Route>
-        <Route path="/client/:id">
+        <Route path="/client/:userid/:clientid">
           <Client />
         </Route>
         <Route path="/error">

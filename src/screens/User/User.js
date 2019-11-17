@@ -15,24 +15,20 @@ import Button from '@material-ui/core/Button';
 import Link from 'react-router-dom/Link';
 
 export default class User extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showingSections: false,
-      showingCards: false,
-      userid: "testuser",
-      clientid: null,
-      sectionid: null,
-      currentNewComponent : null,
-    };
-    this.show = this.show.bind(this);
-    this.onSelected = this.onSelected.bind(this);
-    this.showNewComponent = this.showNewComponent.bind(this)
-  }
-
-  onSelected(type, id) {
-    this.setState({ ...this.state, [type]: id });
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            showingSections: false,
+            showingCards: false,
+            userid: "testuser",
+            clientid: null,
+            sectionid: null,
+            currentNewComponent: null,
+        };
+        this.show = this.show.bind(this);
+        this.onSelected = this.onSelected.bind(this);
+        this.showNewComponent = this.showNewComponent.bind(this)
+    }
 
     onSelected(type, id) {
         this.setState({ ...this.state, [type]: id });
@@ -63,7 +59,7 @@ export default class User extends React.Component {
                         </IconButton>
                         <Typography variant="h6">User</Typography>
                         <section className="rightNav">
-                            <Button component={Link} color="inherit" to={(userid === null) ? `/client/${clientid}` : '/error'}>Preview</Button>
+                            <Button component={Link} color="inherit" to={(clientid !== null) ? `/client/${userid}/${clientid}` : '/error'}>Preview</Button>
                         </section>
                     </Toolbar>
                 </AppBar>
