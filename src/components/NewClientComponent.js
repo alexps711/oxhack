@@ -79,7 +79,7 @@ class NewClientComponent extends React.Component {
               />
               <TextField
                 id="clienLogo"
-                label="Logo"
+                label="Logo link"
                 name="clientLogo"
                 value={img}
                 margin="normal"

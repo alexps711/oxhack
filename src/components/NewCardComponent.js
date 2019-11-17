@@ -80,7 +80,7 @@ class NewCardComponent extends React.Component {
               />
               <TextField
                 id="cardImg"
-                label="Image"
+                label="Image link"
                 name="image"
                 value={img}
                 margin="normal"
