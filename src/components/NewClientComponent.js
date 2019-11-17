@@ -30,6 +30,49 @@ class NewClientComponent extends React.Component {
     this.setState({ ...this.state, [event.target.name]: event.target.value });
   }
 
+  componentDidMount(){
+    var currentThis = this
+
+    if (this.props.edit) {
+        firebase
+          .database()
+          .ref(this.props.pathPassed + "/" + this.props.id)
+          .once("value")
+          .then(function(snapshot) {
+            console.log(snapshot.val());
+            currentThis.setState({
+              title: snapshot.val()["title"],
+              description: snapshot.val()["description"],
+              img: snapshot.val()["img"],
+
+
+            });
+          });
+      }
+  }
+  
+  componentDidUpdate(prevProps) {
+    var currentThis = this
+    if (prevProps.pathPassed != this.props.pathPassed) {
+      if (this.props.edit) {
+        firebase
+          .database()
+          .ref(this.props.pathPassed + "/" + this.props.id)
+          .once("value")
+          .then(function(snapshot) {
+            console.log(snapshot.val());
+            currentThis.setState({
+              title: snapshot.val()["title"],
+              description: snapshot.val()["description"],
+              img: snapshot.val()["img"],
+
+
+            });
+          });
+      }
+    }
+  }
+
   saveCard() {
     var currentThis = this;
     firebase

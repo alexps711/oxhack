@@ -36,7 +36,8 @@ export default class User extends React.Component {
           type:null,
           count:null,
           path:null,
-          id:null
+          id:null,
+          edit:false
       },
       anchorEl: null,
     };
@@ -44,6 +45,7 @@ export default class User extends React.Component {
     this.onSelected = this.onSelected.bind(this);
     this.showNewComponent = this.showNewComponent.bind(this)
     this.reRender = this.reRender.bind(this)
+    this.editFunc = this.editFunc.bind(this)
   }
 
   onSelected(type, id) {
@@ -52,6 +54,14 @@ export default class User extends React.Component {
   }
 
     showNewComponent(type, count) {
+        this.setState({currentNewComponent : {
+            type:null,
+            count:null,
+            path:null,
+            id:null,
+            edit:false
+        },
+         })
         this.setState({ ...this.state, currentNewComponent: {type,count} })
     }
 
@@ -69,8 +79,10 @@ export default class User extends React.Component {
             type:null,
             count:null,
             path:null,
-            id:null
-        }})
+            id:null,
+            edit:false
+        },
+         })
     }
     /**
      * Reveal the column.
@@ -92,8 +104,16 @@ export default class User extends React.Component {
       };
 
       editFunc(type, count, path, id){
-          alert([type,path,id])
-          //this.setState({ ...this.state, currentNewComponent: {type,count,path,id} })
+        this.setState({currentNewComponent : {
+            type:null,
+            count:null,
+            path:null,
+            id:null,
+            edit:false
+        },
+         })
+          //alert([type,path,id])
+          this.setState({ ...this.state, currentNewComponent: {type,count,path,id,edit:true} })
       }
 
     render() {
@@ -153,6 +173,7 @@ export default class User extends React.Component {
                             showNewComponent={this.showNewComponent}
                             path={"/users/" + userid + "/clients"}
                             editFunc={this.editFunc}
+
                         />
                     </Grid>
                     {showingSections && (
@@ -216,6 +237,7 @@ export default class User extends React.Component {
                         count = {currentNewComponent["count"] }
                         id = {currentNewComponent["id"] }
                         pathPassed = {currentNewComponent["path"] }
+                        edit = {currentNewComponent["edit"] }
 
                     />
                 )
@@ -235,6 +257,8 @@ export default class User extends React.Component {
                         count = {currentNewComponent["count"] }
                         id = {currentNewComponent["id"] }
                         pathPassed = {currentNewComponent["path"] }
+                        edit = {currentNewComponent["edit"] }
+
 
                     />
                 )
@@ -252,6 +276,8 @@ export default class User extends React.Component {
                         count = {currentNewComponent["count"] }
                         id = {currentNewComponent["id"] }
                         pathPassed = {currentNewComponent["path"] }
+                        edit = {currentNewComponent["edit"] }
+
                     />
                 )}
             </>

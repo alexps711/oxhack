@@ -25,6 +25,24 @@ class NewSectionComponent extends React.Component {
     this.saveCard = this.saveCard.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    var currentThis = this
+    if (prevProps.pathPassed != this.props.pathPassed) {
+      if (this.props.pathPassed != null) {
+        firebase
+          .database()
+          .ref(this.props.pathPassed + "/" + this.props.id)
+          .once("value")
+          .then(function(snapshot) {
+            console.log(snapshot.val());
+            currentThis.setState({
+              title: snapshot.val()["title"],
+            });
+          });
+      }
+    }
+  }
+
   handleChange(event){
       this.setState({...this.state, [event.target.name]:event.target.value})
 
