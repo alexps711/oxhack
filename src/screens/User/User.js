@@ -1,18 +1,23 @@
-import React from "react";
-import "../../firebase";
-import Grid from "@material-ui/core/Grid";
-import UserCol from "../../components/UserCol/UserCol";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import "./user.css";
+import React from 'react'
+import firebase from '../../firebase';
+import Grid from '@material-ui/core/Grid';
+import UserCol from '../../components/UserCol/UserCol';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
+import './user.css';
+
 import NewCardComponent from "../../components/NewCardComponent";
 import NewSectionComponent from "../../components/NewSectionComponent";
 import NewClientComponent from "../../components/NewClientComponent";
 import Button from '@material-ui/core/Button';
 import Link from 'react-router-dom/Link';
+
 
 export default class User extends React.Component {
   constructor(props) {
@@ -27,6 +32,8 @@ export default class User extends React.Component {
           type:null,
           count:null
       },
+      anchorEl: null,
+      setAnchorEl: null,
     };
     this.show = this.show.bind(this);
     this.onSelected = this.onSelected.bind(this);
@@ -40,6 +47,14 @@ export default class User extends React.Component {
     showNewComponent(type, count) {
         this.setState({ ...this.state, currentNewComponent: {type,count} })
     }
+
+    signOut(){
+        firebase.auth().signOut().then(function() {
+            console.log('Signed Out');
+          }, function(error) {
+            console.error('Sign Out Error', error);
+          });
+    }
     /**
      * Reveal the column.
      */
@@ -50,16 +65,54 @@ export default class User extends React.Component {
             this.setState({ showingCards: true });
         }
     }
+
+    handleMenu = (event) => {
+        this.setState({anchorEl: event.currentTarget});
+    };
+
+    handleClose = () => {
+        this.setState({anchorEl: null});
+      };
+
     render() {
         const { showingSections, showingCards, clientid, userid, sectionid, currentNewComponent } = this.state;
+        const open = this.state.anchorEl;
         return (
             <>
                 <AppBar position="static" className="navMenu">
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6">User</Typography>
+                        <div>
+                            <IconButton 
+                                edge="start"  
+                                color="inherit" 
+                                aria-label="menu" 
+                                aria-controls="menu-dropdown"
+                                onClick={this.handleMenu}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                id="menu-dropdown"
+                                anchorEl={this.state.anchorEl}
+                                anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                                }}
+                                open={open}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={this.signOut}>Log Out</MenuItem>
+                            </Menu>
+                        </div>
+                        <Typography variant="h6">
+                            User
+                        </Typography>
                         <section className="rightNav">
                             <Button component={Link} color="inherit" to={(userid === null) ? `/client/${clientid}` : '/error'}>Preview</Button>
                         </section>
