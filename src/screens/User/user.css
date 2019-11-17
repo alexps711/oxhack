@@ -9,11 +9,19 @@
     padding-bottom: 10%;
     padding-left:20px;
     padding-right:20px;
-
 }
 
 .Main .Column h1 {
     text-align: center;
+}
+
+.NavMenu {
+    flex-grow: 1;
+}
+
+.NavRight {
+    margin-left: auto;
+
 }
 
 .new-element-container{

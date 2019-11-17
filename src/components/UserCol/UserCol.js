@@ -60,7 +60,8 @@ class UserCol extends React.Component {
     });
     this.state.onSelected(type, id);
     //Tell User.js to reveal the column.
-    this.props.show(this.state.type);
+    if(this.state.type !== "cards")
+    this.props.show(this.state.type, this.state.selected.id);
   }
 
   render() {
