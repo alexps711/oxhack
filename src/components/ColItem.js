@@ -21,7 +21,7 @@ class ColItem extends React.Component {
   render() {
     return (
         <div>
-          <Button type="button" onClick={this.handleClick}>{this.props.text}</Button>
+          <Button type="button" onClick={this.handleClick}>{this.props.text }</Button>
         </div>
     )
 
