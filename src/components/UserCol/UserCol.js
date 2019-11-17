@@ -85,13 +85,12 @@ class UserCol extends React.Component {
     });
     this.state.onSelected(type, id);
     //Tell User.js to reveal the column.
-    if (this.state.type !== "cards")
-      this.props.show(this.state.type, this.state.selected.id);
+    this.props.show(this.state.type, this.state.selected.id);
   }
 
   render() {
     let currentThis = this;
-    var colItems = Object.keys(this.state.rows).map(function (id) {
+    var colItems = Object.keys(this.state.rows).map(function(id) {
       return (
         <ColItem
           text={currentThis.state.rows[id]["title"]}
@@ -105,7 +104,7 @@ class UserCol extends React.Component {
     return (
       <div className="user-col">
         <div className="user-col-scroll">
-          {colItems}
+        {colItems}
         </div>
         <div className="col-footer">
           <Button type="button" onClick={this.createNew}>{"Create new " + this.state.title}</Button>
