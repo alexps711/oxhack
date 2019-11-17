@@ -20,10 +20,13 @@ export default class User extends React.Component {
     this.state = {
       showingSections: false,
       showingCards: false,
-      userid: "testuser",
+      userid: "user7",
       clientid: null,
       sectionid: null,
-      currentNewComponent : null,
+      currentNewComponent : {
+          type:null,
+          count:null
+      },
     };
     this.show = this.show.bind(this);
     this.onSelected = this.onSelected.bind(this);
@@ -34,13 +37,8 @@ export default class User extends React.Component {
     this.setState({ ...this.state, [type]: id });
   }
 
-    onSelected(type, id) {
-        this.setState({ ...this.state, [type]: id });
-    }
-
-    showNewComponent(type) {
-        console.log(type)
-        this.setState({ ...this.state, currentNewComponent: type })
+    showNewComponent(type, count) {
+        this.setState({ ...this.state, currentNewComponent: {type,count} })
     }
     /**
      * Reveal the column.
@@ -121,7 +119,7 @@ export default class User extends React.Component {
                         </Grid>
                     )}
                 </Grid>
-                {currentNewComponent === "cardsid" && (
+                {currentNewComponent["type"] === "cardsid" && (
                     <NewCardComponent
                         path={
                             "/users/" +
@@ -132,11 +130,13 @@ export default class User extends React.Component {
                             sectionid +
                             "/cards"
                         }
+                        count = {currentNewComponent["count"] }
+
                     />
                 )
                 }
 
-                {currentNewComponent === "sectionid" && (
+                {currentNewComponent["type"]  === "sectionid" && (
                     <NewSectionComponent
                         path={
                             "/users/" +
@@ -145,17 +145,21 @@ export default class User extends React.Component {
                             clientid +
                             "/sections"
                         }
+                        count = {currentNewComponent["count"] }
+
                     />
                 )
                 }
 
-                {currentNewComponent === "clientid" && (
+                {currentNewComponent["type"]  === "clientid" && (
                     <NewClientComponent
                         path={
                             "/users/" +
                             userid +
                             "/clients/"
                         }
+
+                        count = {currentNewComponent["count"] }
                     />
                 )}
             </>

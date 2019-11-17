@@ -13,7 +13,7 @@ class UserCol extends React.Component {
       type: props.type,
       path: props.path,
       showNewComponent: props.showNewComponent,
-      rows: [],
+      rows: {},
       onSelected: props.onSelected,
       selected: {
         type: null,
@@ -32,17 +32,18 @@ class UserCol extends React.Component {
       .ref(this.state.path)
       .once("value")
       .then(function(snapshot) {
+        console.log(snapshot.val())
         if (snapshot.val() != null) {
           currentThis.setState({
             ...currentThis.state,
-            rows: Object.keys(snapshot.val())
+            rows: snapshot.val()
           });
         }
       });
   }
 
   createNew() {
-    this.state.showNewComponent(this.state.id);
+    this.state.showNewComponent(this.state.id, Object.keys(this.state.rows).length+1);
   }
 
 
@@ -60,7 +61,6 @@ class UserCol extends React.Component {
     });
     this.state.onSelected(type, id);
     //Tell User.js to reveal the column.
-    if(this.state.type !== "cards")
     this.props.show(this.state.type, this.state.selected.id);
   }
 
@@ -69,13 +69,14 @@ class UserCol extends React.Component {
     var colItems = Object.keys(this.state.rows).map(function(id) {
       return (
         <ColItem
-          text={currentThis.state.rows[id]}
-          id={currentThis.state.rows[id]}
+          text={currentThis.state.rows[id]["title"]}
+          id={id}
           type={currentThis.state.id}
           handleClick={currentThis.setClicked}
         />
       );
     });
+    console.log(colItems)
     return (
       <div className="user-col">
         <div className="user-col-scroll">

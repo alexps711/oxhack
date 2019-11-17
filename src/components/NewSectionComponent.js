@@ -24,10 +24,9 @@ class NewSectionComponent extends React.Component {
   }
   saveCard(){
       var currentThis = this
-    firebase.database().ref(currentThis.props.path+"/"+currentThis.state.newId).set({
+    firebase.database().ref(currentThis.props.path+"/"+currentThis.props.count).set({
         description: currentThis.state.description,
         title : currentThis.state.title,
-        id:currentThis.state.newId
       });
 
   }
@@ -38,17 +37,6 @@ class NewSectionComponent extends React.Component {
         <div className="new-element-inside-container">
           <h1>New Section</h1>
           <Grid container className="main-TextField-grid">
-          <Grid item className="Column">
-          <TextField
-            id="outlined-basic"
-            label="Id"
-            name="newId"
-            margin="normal"
-            onChange={this.handleChange}
-            multiline
-            variant="outlined"
-          />
-        </Grid>
           <Grid item className="Column">
           <TextField
             id="outlined-basic"
