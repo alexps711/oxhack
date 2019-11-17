@@ -45,7 +45,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/user">
+          <Route path="">
             {this.state.showLogin ? <LogIn onSubmit={this.checkIfLogged} /> : <User uid={this.state.useruid} />}
           </Route>
           <Route path="/client/:userid/:clientid">
