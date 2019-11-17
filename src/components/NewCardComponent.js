@@ -21,13 +21,25 @@ class NewCardComponent extends React.Component {
         newId: null,
         path: props.path,
         reRender:props.reRender,
-        reRenderId:props.reRenderId
+        reRenderId:props.reRenderId,
+        id : props.id,
+        pathPassed : props.pathPassed          
+      }
 
-    }
+
+    
     this.handleChange = this.handleChange.bind(this)
     this.saveCard = this.saveCard.bind(this)
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps!=this.props){
+      if(this.props.pathPassed!=null){
+        //we are editing 
+      }
+    }
+
+  }
   handleChange(event){
       this.setState({...this.state, [event.target.name]:event.target.value})
 

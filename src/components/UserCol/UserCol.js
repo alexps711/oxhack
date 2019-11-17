@@ -70,6 +70,10 @@ class UserCol extends React.Component {
     this.state.showNewComponent(this.state.id, Object.keys(this.state.rows).length+1);
   }
 
+  edit(id) {
+    this.state.editFunc(this.state.id, Object.keys(this.state.rows).length, this.state.path, id);
+  }
+
 
   /**
    * Keeps track of the card clicked

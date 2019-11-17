@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from '../../firebase';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 import UserCol from '../../components/UserCol/UserCol';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -34,7 +34,9 @@ export default class User extends React.Component {
       cardUpadateTime: 0,
       currentNewComponent : {
           type:null,
-          count:null
+          count:null,
+          path:null,
+          id:null
       },
       anchorEl: null,
     };
@@ -65,7 +67,9 @@ export default class User extends React.Component {
         var seconds = new Date() / 1000;
         this.setState({[id]:seconds, currentNewComponent : {
             type:null,
-            count:null
+            count:null,
+            path:null,
+            id:null
         }})
     }
     /**
@@ -86,6 +90,10 @@ export default class User extends React.Component {
     handleClose = () => {
         this.setState({anchorEl: null});
       };
+
+      editFunc(type, count, path, id){
+          this.setState({ ...this.state, currentNewComponent: {type,count,path,id} })
+      }
 
     render() {
         const reRender = this.reRender
@@ -143,6 +151,7 @@ export default class User extends React.Component {
                             show={this.show}
                             showNewComponent={this.showNewComponent}
                             path={"/users/" + userid + "/clients"}
+                            editFunc={this.editFunc}
                         />
                     </Grid>
                     {showingSections && (
@@ -163,6 +172,7 @@ export default class User extends React.Component {
                                     clientid +
                                     "/sections"
                                 }
+                                editFunc={this.editFunc}
                             />
                         </Grid>
                     )}
@@ -184,6 +194,7 @@ export default class User extends React.Component {
                                     sectionid +
                                     "/cards"
                                 }
+                                editFunc={this.editFunc}
                             />
                         </Grid>
                     )}
@@ -202,6 +213,8 @@ export default class User extends React.Component {
                         reRenderId="cardUpadateTime"
                         reRender={reRender}
                         count = {currentNewComponent["count"] }
+                        id = {currentNewComponent["id"] }
+                        pathPassed = {currentNewComponent["path"] }
 
                     />
                 )
@@ -219,6 +232,8 @@ export default class User extends React.Component {
                         reRender={reRender}
                         reRenderId="sectionUpadateTime"
                         count = {currentNewComponent["count"] }
+                        id = {currentNewComponent["id"] }
+                        pathPassed = {currentNewComponent["path"] }
 
                     />
                 )
@@ -234,6 +249,8 @@ export default class User extends React.Component {
                         reRender={reRender}
                         reRenderId="clientUpadateTime"
                         count = {currentNewComponent["count"] }
+                        id = {currentNewComponent["id"] }
+                        pathPassed = {currentNewComponent["path"] }
                     />
                 )}
             </>
