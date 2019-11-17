@@ -29,7 +29,7 @@ class ColItem extends React.Component {
     return (
       <div className="itemButt">
         <div className="buttContainer">
-        <Grid container spacing={0}>
+        <Grid container spacing={2}>
           <Grid item xs={8}>
             <Button type="button" onClick={this.handleClick}>{this.props.text}</Button>
           </Grid>
