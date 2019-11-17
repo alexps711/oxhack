@@ -11,13 +11,12 @@ import Error from './components/Error/Error';
 
 import './App.css';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       showLogin: true,
-      useruid:null
+      useruid: null
     }
     this.checkIfLogged2 = this.checkIfLogged.bind(this)
   }
@@ -27,10 +26,10 @@ class App extends React.Component {
   }
   checkIfLogged(user) {
     if (user != null) {
-      currentThis.setState({ ...currentThis.state, showLogin: false, useruid: user.uid })
+      this.setState({ ...this.state, showLogin: false, useruid: user.uid })
       return
     }
-    var currentThis = this
+    var currentThis = this;
     firebase.auth().onAuthStateChanged(function (user) {
       if (user != null) {
         currentThis.setState({ ...currentThis.state, showLogin: false, useruid: user.uid })
@@ -43,15 +42,17 @@ class App extends React.Component {
   }
 
   render() {
-    var currentThis = this
     return (
       <Router>
         <Switch>
           <Route path="/user">
-            {this.state.showLogin ? <LogIn onSubmit={this.checkIfLogged} /> : <User uid={this.state.useruid}/>}
+            {this.state.showLogin ? <LogIn onSubmit={this.checkIfLogged} /> : <User uid={this.state.useruid} />}
           </Route>
-          <Route path="/client">
+          <Route path="/client/:userid/:clientid">
             <Client />
+          </Route>
+          <Route path="/error">
+            <Error />
           </Route>
         </Switch>
       </Router>

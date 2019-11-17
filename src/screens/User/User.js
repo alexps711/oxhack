@@ -114,7 +114,7 @@ export default class User extends React.Component {
                             User
                         </Typography>
                         <section className="rightNav">
-                            <Button component={Link} color="inherit" to={(userid === null) ? `/client/${clientid}` : '/error'}>Preview</Button>
+                            <Button component={Link} color="inherit" to={(clientid !== null) ? `/client/${userid}/${clientid}` : '/error'}>Preview</Button>
                         </section>
                     </Toolbar>
                 </AppBar>
