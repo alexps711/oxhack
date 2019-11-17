@@ -2,8 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import firebase from "../firebase";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
+import './newField.css'
 
 class NewCardComponent extends React.Component {
   constructor(props) {
@@ -40,74 +44,93 @@ class NewCardComponent extends React.Component {
   }
 
   render() {
+    const { title } = this.state;
+    const { description } = this.state;
+    const { img } = this.state;
+    const { link } = this.state;
+
     return (
-      <div className="new-element-container">
-        <div className="new-element-inside-container">
-          <h1>New Card</h1>
-          <Grid container className="main-TextField-grid">
+      <div className="newFiledWindow">
+        <div className="formContainer">
+
+          <ValidatorForm
+            ref="newClient"
+            className="newFieldForm"
+            onSubmit={this.saveCard}
+            onError={errors => console.log(errors)}
+          >
+            <Typography variant="h6">
+              Add new card
+            </Typography>
+            <div>
+            <TextField
+                id="title"
+                label="Card title"
+                name="title"
+                value={title}
+                margin="normal"
+                onChange={this.handleChange}
+                multiline={false}
+                inputProps={{
+                  maxLength: 30,
+                }}
+                variant="outlined"
+                errorText="Titel too long! Please enter a name under 30 symbols"
+                style={{ width: 350,
+                         marginRight: 20
+                }}
+
+                onChange={this.handleChange}
+              />
+              <TextField
+                id="cardImg"
+                label="Image"
+                name="image"
+                value={img}
+                margin="normal"
+                onChange={this.handleChange}
+                variant="outlined"
+                style={{ width: 350}}
+              />
+            </div>
+
+            <div>
+              <TextField
+                id="cardLink"
+                label="Link to the article"
+                name="link"
+                value={link}
+                margin="normal"
+                onChange={this.handleChange}
+                variant="outlined"
+                style={{ width: 720}}
+              />
+            </div>
+
+            <div>
+              <TextField
+                id="cardSumm"
+                label="Abstract of the article"
+                name="summary"
+                value={description}
+                margin="normal"
+                onChange={this.handleChange}
+                variant="outlined"
+                multiline
+                style={{ width: 720}}
+              />
+            </div>
+
+            <div>
+              <Button type="submit" className="newFieldButt" >
+                Save
+            </Button>
+            </div>
+
+          </ValidatorForm>
+
           
-        <Grid item className="Column">
-
-          <TextField
-            id="outlined-basic"
-            label="Title"
-            name="title"
-            margin="normal"
-            onChange={this.handleChange}
-            multiline
-            variant="outlined"
-            style = {{width: 500}}
-
-          />
-          </Grid>
-          <Grid item className="Column">
-
-          <TextField
-            id="outlined-basic"
-            label="Description"
-            name="description"
-            margin="normal"
-            onChange={this.handleChange}
-            multiline
-            variant="outlined"
-            style = {{width: 500}}
-
-          />
-          </Grid>
-          <Grid item className="Column">
-
-          <TextField
-            id="outlined-basic"
-            label="Link"
-            name="link"
-            margin="normal"
-            onChange={this.handleChange}
-            multiline
-            variant="outlined"
-            style = {{width: 500}}
-
-          />
-          </Grid>
-          <Grid item className="Column">
-
-          <TextField
-            id="outlined-basic"
-            label="Image"
-            name="image"
-            onChange={this.handleChange}
-            margin="normal"
-            multiline
-            variant="outlined"
-            style = {{width: 500}}
-
-          />
-          </Grid>
-          </Grid>
-         
-          <Button variant="outlined" style={{width:"100%",height:"60px"}} onClick={this.saveCard}>Save</Button>
-
         </div>
-        
       </div>
     );
   }
