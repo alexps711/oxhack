@@ -25,7 +25,7 @@ export default class User extends React.Component {
     this.state = {
       showingSections: false,
       showingCards: false,
-      userid: "user7",
+      userid: props.uid,
       clientid: null,
       sectionid: null,
       currentNewComponent : {

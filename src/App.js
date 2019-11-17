@@ -16,7 +16,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showLogin: true
+      showLogin: true,
+      useruid:null
     }
     this.checkIfLogged2 = this.checkIfLogged.bind(this)
   }
@@ -26,13 +27,13 @@ class App extends React.Component {
   }
   checkIfLogged(user) {
     if (user != null) {
-      currentThis.setState({ ...currentThis.state, showLogin: false })
+      currentThis.setState({ ...currentThis.state, showLogin: false, useruid: user.uid })
       return
     }
     var currentThis = this
     firebase.auth().onAuthStateChanged(function (user) {
       if (user != null) {
-        currentThis.setState({ ...currentThis.state, showLogin: false })
+        currentThis.setState({ ...currentThis.state, showLogin: false, useruid: user.uid })
       } else {
         currentThis.setState({ ...currentThis.state, showLogin: true })
       }
@@ -47,7 +48,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/user">
-            {this.state.showLogin ? <LogIn onSubmit={this.checkIfLogged} /> : <User />}
+            {this.state.showLogin ? <LogIn onSubmit={this.checkIfLogged} /> : <User uid={this.state.useruid}/>}
           </Route>
           <Route path="/client">
             <Client />
