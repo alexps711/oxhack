@@ -13,8 +13,10 @@ class ColItem extends React.Component {
         id: props.id,
         type: props.type,
         handleChange : props.handleChange,
+        editfunc:props.editfunc
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
   handleClick() {
@@ -23,6 +25,10 @@ class ColItem extends React.Component {
 
   handleRemove() {
     this.props.handleClick(this.state.type, this.state.id);
+  }
+
+  handleEdit() {
+    this.props.editfunc(this.props.id)
   }
   
   render() {
@@ -35,7 +41,7 @@ class ColItem extends React.Component {
           </Grid>
           <Grid item xs={4}>
             <ButtonGroup size="small" aria-label="outlined primary button group">
-              <Button onClick={this.handleRemove}><EditIcon /></Button>
+              <Button onClick={this.handleEdit}><EditIcon /></Button>
               <Button onClick={this.handleRemove}><DeleteIcon /> </Button>
             </ButtonGroup>
           </Grid>

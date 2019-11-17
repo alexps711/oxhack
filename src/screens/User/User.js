@@ -92,7 +92,8 @@ export default class User extends React.Component {
       };
 
       editFunc(type, count, path, id){
-          this.setState({ ...this.state, currentNewComponent: {type,count,path,id} })
+          alert([type,path,id])
+          //this.setState({ ...this.state, currentNewComponent: {type,count,path,id} })
       }
 
     render() {

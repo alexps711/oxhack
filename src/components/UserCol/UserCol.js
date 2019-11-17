@@ -18,11 +18,13 @@ class UserCol extends React.Component {
       selected: {
         type: null,
         id: null
-      }
+      },
+      editFunc:props.editFunc
     };
     this.setClicked = this.setClicked.bind(this);
     this.createNew = this.createNew.bind(this)
     this.updateView = this.updateView.bind(this)
+    this.edit = this.edit.bind(this)
   }
 
   componentDidMount() {
@@ -101,6 +103,7 @@ class UserCol extends React.Component {
           id={id}
           type={currentThis.state.id}
           handleClick={currentThis.setClicked}
+          editfunc={currentThis.edit}
         />
       );
     });
