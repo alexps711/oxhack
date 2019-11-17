@@ -1,6 +1,9 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-
+import Grid from '@material-ui/core/Grid';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 class ColItem extends React.Component {
   constructor(props) {
@@ -17,12 +20,29 @@ class ColItem extends React.Component {
   handleClick() {
     this.props.handleClick(this.state.type, this.state.id);
   }
+
+  handleRemove() {
+    this.props.handleClick(this.state.type, this.state.id);
+  }
   
   render() {
     return (
-        <div>
-          <Button type="button" onClick={this.handleClick}>{this.props.text}</Button>
+      <div className="itemButt">
+        <div className="buttContainer">
+        <Grid container spacing={0}>
+          <Grid item xs={8}>
+            <Button type="button" onClick={this.handleClick}>{this.props.text}</Button>
+          </Grid>
+          <Grid item xs={4}>
+            <ButtonGroup size="small" aria-label="outlined primary button group">
+              <Button onClick={this.handleRemove}><EditIcon /></Button>
+              <Button onClick={this.handleRemove}><DeleteIcon /> </Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid>
+          
         </div>
+      </div>
     )
 
   }
