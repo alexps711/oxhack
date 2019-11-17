@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import './Client.css';
 import firebase from '../../firebase';
 import Card from '../../components/Card';
-import usePromise from 'react-promise';
 
 class Client extends React.Component {
     state = {
