@@ -11,8 +11,16 @@
   margin-left: auto;
 }
 
-.header {
+.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  margin-left: 5%;
+  margin-right: 5%;
+}
 
+.Card {
+  padding: 0.5%;
 }
 
 .image {
