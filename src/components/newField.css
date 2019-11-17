@@ -1,0 +1,28 @@
+.newFiledWindow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.formContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    
+}
+
+.newFieldForm {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 100px;
+    width: 300;
+}
+
+.newFieldButt {
+    margin: 8px;
+}

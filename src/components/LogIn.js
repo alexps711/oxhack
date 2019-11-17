@@ -38,13 +38,6 @@ class LogIn extends React.Component{
             var errorMessage = error.message;
             console.log(errorMessage)            
         });
-        
-        // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        // .then(function() {
-        //     var currentThis = this
-        //     return 
-        //             console.log(firebase.auth().currentUser)
-        // })
     }
 
     // handleGoogleLogIn
@@ -62,7 +55,7 @@ class LogIn extends React.Component{
                         onSubmit={this.handleSubmit}
                         onError={errors => console.log(errors)}
                     >
-                         <Typography variant="h6">
+                        <Typography variant="h6">
                             Log In
                         </Typography>
                         <div>

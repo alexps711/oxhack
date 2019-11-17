@@ -111,7 +111,7 @@ export default class User extends React.Component {
                             </Menu>
                         </div>
                         <Typography variant="h6">
-                            User
+                            Current user: {firebase.auth().currentUser.email}
                         </Typography>
                         <section className="rightNav">
                             <Button component={Link} color="inherit" to={(clientid !== null) ? `/client/${userid}/${clientid}` : '/error'}>Preview</Button>

@@ -2,8 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import firebase from "../firebase";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
+import './newField.css'
 
 class NewClientComponent extends React.Component {
   constructor(props) {
@@ -22,6 +26,7 @@ class NewClientComponent extends React.Component {
   handleChange(event) {
     this.setState({ ...this.state, [event.target.name]: event.target.value });
   }
+
   saveCard() {
     var currentThis = this;
     firebase
@@ -35,57 +40,78 @@ class NewClientComponent extends React.Component {
   }
 
   render() {
+    const { title } = this.state;
+    const { description } = this.state;
+    const { img } = this.state;
+
     return (
-      <div className="new-element-container">
-        <div className="new-element-inside-container">
-          <h1>New Client</h1>
-          <Grid container className="main-TextField-grid">
+      <div className="newFiledWindow">
+        <div className="formContainer">
 
-            <Grid item className="Column">
-              <TextField
-                id="outlined-basic"
-                label="Title"
-                name="title"
-                margin="normal"
-                onChange={this.handleChange}
-                multiline
-                variant="outlined"
-                style = {{width: 500}}
-              />
-            </Grid>
-            <Grid item className="Column">
-              <TextField
-                id="outlined-basic"
-                label="Description"
-                name="description"
-                margin="normal"
-                onChange={this.handleChange}
-                multiline
-                variant="outlined"
-                style = {{width: 500}}
-              />
-            </Grid>
-            <Grid item className="Column">
-              <TextField
-                id="outlined-basic"
-                label="Image"
-                name="img"
-                margin="normal"
-                onChange={this.handleChange}
-                multiline
-                variant="outlined"
-                style = {{width: 500}}
-              />
-            </Grid>
-          </Grid>
-
-          <Button
-            variant="outlined"
-            style={{ width: "100%", height: "60px" }}
-            onClick={this.saveCard}
+          <ValidatorForm
+            ref="newClient"
+            className="newFieldForm"
+            onSubmit={this.saveCard}
+            onError={errors => console.log(errors)}
           >
-            Save
-          </Button>
+            <Typography variant="h6">
+              Add new client
+            </Typography>
+            <div>
+            <TextField
+                id="clientName"
+                label="Client name"
+                name="title"
+                value={title}
+                margin="normal"
+                onChange={this.handleChange}
+                multiline={false}
+                inputProps={{
+                  maxLength: 20,
+                }}
+                variant="outlined"
+                errorText="Name too long! Please enter a name under 20 symbols"
+                style={{ width: 350,
+                         marginRight: 20
+                }}
+
+                onChange={this.handleChange}
+              />
+              <TextField
+                id="clienLogo"
+                label="Logo"
+                name="clientLogo"
+                value={img}
+                margin="normal"
+                onChange={this.handleChange}
+                variant="outlined"
+                style={{ width: 350}}
+              />
+            </div>
+
+            <div>
+              <TextField
+                id="clientSummary"
+                label="Summary"
+                name="description"
+                value={description}
+                margin="normal"
+                onChange={this.handleChange}
+                variant="outlined"
+                multiline
+                style={{ width: 720}}
+              />
+            </div>
+
+            <div>
+              <Button type="submit" className="newFieldButt" >
+                Save
+            </Button>
+            </div>
+
+          </ValidatorForm>
+
+          
         </div>
       </div>
     );
