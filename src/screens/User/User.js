@@ -87,6 +87,11 @@ export default class User extends React.Component {
         this.setState({anchorEl: null});
       };
 
+      editFunc(type, length, path, id){
+          alert([type,length,path,id])
+
+      }
+
     render() {
         const reRender = this.reRender
         const { showingSections, showingCards, clientid, userid, sectionid, currentNewComponent } = this.state;
@@ -143,6 +148,7 @@ export default class User extends React.Component {
                             show={this.show}
                             showNewComponent={this.showNewComponent}
                             path={"/users/" + userid + "/clients"}
+                            editFunc={this.editFunc}
                         />
                     </Grid>
                     {showingSections && (
@@ -163,6 +169,7 @@ export default class User extends React.Component {
                                     clientid +
                                     "/sections"
                                 }
+                                editFunc={this.editFunc}
                             />
                         </Grid>
                     )}
@@ -184,6 +191,7 @@ export default class User extends React.Component {
                                     sectionid +
                                     "/cards"
                                 }
+                                editFunc={this.editFunc}
                             />
                         </Grid>
                     )}
