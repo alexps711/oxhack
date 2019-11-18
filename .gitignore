@@ -1,4 +1,6 @@
 # Logs
+package-lock.json
+package.json
 logs
 *.log
 npm-debug.log*
@@ -59,3 +61,8 @@ typings/
 
 # next.js build output
 .next
+src/.DS_Store
+package-lock.json
+package.json
+
+.vscode

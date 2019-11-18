@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/06c58d9c-0f16-4a5a-8e96-89ebd1c187d4/resourceGroups/thesumup/providers/Microsoft.Web/sites/thesumup",
+    "appService.deploySubpath": ""
+}

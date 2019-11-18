@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.rightNav{
+  margin-left: auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.Card {
+  padding: 0.5%;
+}
+
+.image {
+    border-radius: 50%;
+    height: 20vh;
+    object-fit: contain;
+    margin-bottom: 10%;
+}
+
